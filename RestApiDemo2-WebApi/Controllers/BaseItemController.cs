@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using RestApiDemo2_WebApi.Data;
 using RestApiDemo2_WebApi.Models;
 using RestApiDemo2_WebApi.Services;
