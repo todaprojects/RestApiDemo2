@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RestApiDemo2_WebApi.Data;
 using RestApiDemo2_WebApi.Models;
 using RestApiDemo2_WebApi.Services;
@@ -17,37 +19,36 @@ namespace RestApiDemo2_WebApi.Controllers
         {
             _shopService = shopService;
             _shopService.Context = context;
-            _shopService.Items = context.Set<T>();
         }
 
         [HttpGet]
-        public List<T> GetAll()
+        public async Task<List<T>> GetAll()
         {
-            return _shopService.GetAllItems();
+            return await _shopService.GetAllItemsAsync();
         }
 
         [HttpGet("{id}")]
-        public T GetItem(int id)
+        public async Task<T> GetItem(int id)
         {
-            return _shopService.GetItem(id);
+            return await _shopService.GetItemAsync(id);
         }
 
         [HttpPost]
-        public void AddItem(T t)
+        public async Task AddItem(T t)
         {
-            _shopService.AddItem(t);
-        }
-
-        [HttpDelete("{id}")]
-        public void DeleteItem(int id)
-        {
-            _shopService.DeleteItem(id);
+            await _shopService.AddItemAsync(t);
         }
 
         [HttpPut("{id}")]
-        public void EditItem(int id, T t)
+        public async Task EditItem(int id, T t)
         {
-            _shopService.EditItem(id, t);
+            await _shopService.EditItemAsync(id, t);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task DeleteItem(int id)
+        {
+            await _shopService.DeleteItemAsync(id);
         }
     }
 }

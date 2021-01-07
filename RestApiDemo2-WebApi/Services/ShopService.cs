@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RestApiDemo2_WebApi.Models;
 
@@ -9,41 +10,35 @@ namespace RestApiDemo2_WebApi.Services
         where T : BaseItem
     {
         public DbContext Context { get; set; }
-        public DbSet<T> Items { get; set; }
 
-        private List<T> GetItemList()
+        public async Task<List<T>> GetAllItemsAsync()
         {
-            return Items.ToList();
+            return await Context.Set<T>().ToListAsync();
+        }
+        
+        public async Task<T> GetItemAsync(int id)
+        {
+            return await Context.Set<T>().FindAsync(id);
         }
 
-        public T GetItem(int id)
+        public async Task AddItemAsync(T t)
         {
-            return GetItemList().Find(item => item.Id == id);
+            Context.Set<T>().Add(t);
+            await Context.SaveChangesAsync();
         }
 
-        public List<T> GetAllItems()
+        public async Task EditItemAsync(int id, T t)
         {
-            return GetItemList();
-        }
-
-        public void AddItem(T t)
-        {
-            Items.Add(t);
-            Context.SaveChanges();
-        }
-
-        public void DeleteItem(int id)
-        {
-            var item = GetItem(id);
-            Items.Remove(item);
-            Context.SaveChanges();
-        }
-
-        public void EditItem(int id, T t)
-        {
-            var item = GetItem(id);
+            var item = await GetItemAsync(id);
             item.Name = t.Name;
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
+        }
+        
+        public async Task DeleteItemAsync(int id)
+        {
+            var item = await GetItemAsync(id);
+            Context.Set<T>().Remove(item);
+            await Context.SaveChangesAsync();
         }
     }
 }
