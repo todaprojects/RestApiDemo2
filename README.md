@@ -11,4 +11,4 @@ Requirements:
 3. At startup, program should check for the existence of tables in the database and the creation if none exist.
 4. ConnectionString must be set in `appsettings.json`.
 5. After restarting the program, the information must not change (taken from the database).
-
+6. All Api method should be async.
