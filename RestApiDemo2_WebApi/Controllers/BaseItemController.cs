@@ -1,53 +1,51 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using RestApiDemo2_WebApi.Data;
-using RestApiDemo2_WebApi.Models;
-using RestApiDemo2_WebApi.Services;
+using RestApiDemo_WebApi.Models;
+using RestApiDemo_WebApi.Repositories;
 
-namespace RestApiDemo2_WebApi.Controllers
+namespace RestApiDemo_WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public abstract class BaseItemController<T> : ControllerBase
         where T : BaseItem
     {
-        private readonly IShopService<T> _shopService;
+        private readonly IItemRepository<T> _itemRepository;
 
-        public BaseItemController(IShopService<T> shopService, BaseItemContext context)
+        public BaseItemController(IItemRepository<T> itemRepository)
         {
-            _shopService = shopService;
-            _shopService.Context = context;
+            _itemRepository = itemRepository;
         }
 
         [HttpGet]
         public async Task<List<T>> GetAll()
         {
-            return await _shopService.GetAllItemsAsync();
+            return await _itemRepository.GetAllItemsAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<T> GetItem(int id)
         {
-            return await _shopService.GetItemAsync(id);
+            return await _itemRepository.GetItemAsync(id);
         }
 
         [HttpPost]
         public async Task AddItem(T t)
         {
-            await _shopService.AddItemAsync(t);
+            await _itemRepository.AddItemAsync(t);
         }
 
         [HttpPut("{id}")]
         public async Task EditItem(int id, T t)
         {
-            await _shopService.EditItemAsync(id, t);
+            await _itemRepository.EditItemAsync(id, t);
         }
 
         [HttpDelete("{id}")]
         public async Task DeleteItem(int id)
         {
-            await _shopService.DeleteItemAsync(id);
+            await _itemRepository.DeleteItemAsync(id);
         }
     }
 }

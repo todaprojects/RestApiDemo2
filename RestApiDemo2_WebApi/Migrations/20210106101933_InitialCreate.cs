@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RestApiDemo2_WebApi.Migrations
+namespace RestApiDemo_WebApi.Migrations
 {
     public partial class InitialCreate : Migration
     {

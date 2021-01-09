@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using RestApiDemo2_WebApi.Models;
+using RestApiDemo_WebApi.Models;
 
-namespace RestApiDemo2_WebApi.Services
+namespace RestApiDemo_WebApi.Repositories
 {
-    public interface IShopService<T>
+    public interface IItemRepository<T>
         where T : BaseItem
     {
-        DbContext Context { get; set; }
-
         Task<List<T>> GetAllItemsAsync();
         
         Task<T> GetItemAsync(int id);

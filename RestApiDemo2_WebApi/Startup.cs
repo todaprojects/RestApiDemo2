@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RestApiDemo2_WebApi.Data;
-using RestApiDemo2_WebApi.Services;
+using RestApiDemo_WebApi.Data;
+using RestApiDemo_WebApi.Repositories;
+using RestApiDemo_WebApi.Services;
 
-namespace RestApiDemo2_WebApi
+namespace RestApiDemo_WebApi
 {
     public class Startup
     {
@@ -24,7 +25,11 @@ namespace RestApiDemo2_WebApi
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<BaseItemContext>(optionsAction => optionsAction.UseSqlServer(connectionString));
-            services.AddScoped(typeof(IShopService<>), typeof(ShopService<>));
+            services.AddScoped(typeof(DbContext), typeof(BaseItemContext));
+
+            services.AddScoped(typeof(IItemRepository<>), typeof(BaseItemRepository<>));
+            
+            services.AddScoped(typeof(IShopService), typeof(ShopService));
             services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -57,7 +62,7 @@ namespace RestApiDemo2_WebApi
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "ResApiDemo2"); });
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
