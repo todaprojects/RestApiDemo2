@@ -5,12 +5,12 @@ using RestApiDemo_WebApi.Models;
 
 namespace RestApiDemo_WebApi.Repositories
 {
-    public class BaseItemRepository<T> : IItemRepository<T>
+    public class ItemRepository<T> : IItemRepository<T>
         where T : BaseItem
     {
         private readonly DbContext _context;
 
-        public BaseItemRepository(DbContext context)
+        public ItemRepository(DbContext context)
         {
             _context = context;
         }
