@@ -4,7 +4,7 @@ using Xunit;
 
 namespace RestApiDemo2_UnitTests
 {
-    public class UnitTest1
+    public class DiscountService
     {
         private readonly ShopService _discountService = new ShopService();
         
