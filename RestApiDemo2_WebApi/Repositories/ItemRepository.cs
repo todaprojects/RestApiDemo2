@@ -35,6 +35,8 @@ namespace RestApiDemo_WebApi.Repositories
         {
             var item = await GetItemAsync(id);
             item.Name = t.Name;
+            item.Price = t.Price;
+            item.Quantity = t.Quantity;
             await _context.SaveChangesAsync();
         }
         
