@@ -26,10 +26,9 @@ namespace RestApiDemo_WebApi
 
             services.AddDbContext<BaseItemContext>(optionsAction => optionsAction.UseSqlServer(connectionString));
             services.AddScoped(typeof(DbContext), typeof(BaseItemContext));
-
             services.AddScoped(typeof(IItemRepository<>), typeof(BaseItemRepository<>));
-            
             services.AddScoped(typeof(IShopService), typeof(ShopService));
+            
             services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents

@@ -21,19 +21,11 @@ namespace RestApiDemo_WebApi.Controllers
         }
         
         [HttpGet ("{id}/{quantity}")]
-        public async Task<BaseItem> SellItem(int id, int quantity)
+        public async Task<ShoppingCart> SellItem(int id, int quantity)
         {
             var requestedItem = await _itemRepository.GetItemAsync(id);
 
-            BaseItem soldItems = new SoldItem
-            {
-                Name = requestedItem.Name,
-                Price = requestedItem.Price * quantity, 
-                Quantity = quantity,
-                Discount = _shopService.GetDiscount(quantity)
-            };
-
-            return soldItems;
+            return _shopService.Sell(requestedItem, quantity);
         }
     }
 }
