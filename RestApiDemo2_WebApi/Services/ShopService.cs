@@ -27,9 +27,9 @@ namespace RestApiDemo_WebApi.Services
             };
         }
 
-        private static int ApplyDiscount(int discount)
+        private static decimal ApplyDiscount(int discount)
         {
-            return (100 - discount) / 100;
+            return (decimal)(100 - discount) / 100;
         }
     }
 }
