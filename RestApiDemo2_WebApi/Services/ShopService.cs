@@ -1,35 +1,21 @@
+using RestApiDemo_WebApi.Helpers;
 using RestApiDemo_WebApi.Models;
 
 namespace RestApiDemo_WebApi.Services
 {
     public class ShopService : IShopService
     {
-        public int GetDiscount(int quantity)
-        {
-            if (quantity < 5)
-            {
-                return 0;
-            }
-            
-            return quantity > 10 ? 20 : 10;
-        }
-        
         public ShoppingCart Sell<T>(T requestedItem, int quantity) where T : BaseItem
         {
-            var discount = GetDiscount(quantity);
+            var discount = Discount.GetDiscount(quantity);
             
             return new ShoppingCart
             {
                 Item = requestedItem,
                 PurchaseQuantity = quantity,
                 PurchaseDiscount = discount,
-                PurchaseAmount = requestedItem.Price * ApplyDiscount(discount) * quantity
+                PurchaseAmount = requestedItem.Price * Discount.ApplyDiscount(discount) * quantity
             };
-        }
-
-        private static decimal ApplyDiscount(int discount)
-        {
-            return (decimal)(100 - discount) / 100;
         }
     }
 }
