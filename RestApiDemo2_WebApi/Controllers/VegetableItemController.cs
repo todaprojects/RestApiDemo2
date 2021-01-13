@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using RestApiDemo_WebApi.Interfaces;
 using RestApiDemo_WebApi.Models;
-using RestApiDemo_WebApi.Repositories;
 
 namespace RestApiDemo_WebApi.Controllers
 {

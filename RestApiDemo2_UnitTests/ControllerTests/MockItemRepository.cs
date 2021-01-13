@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RestApiDemo_WebApi.Interfaces;
 using RestApiDemo_WebApi.Models;
-using RestApiDemo_WebApi.Repositories;
 
 namespace RestApiDemo2_UnitTests.ControllerTests
 {

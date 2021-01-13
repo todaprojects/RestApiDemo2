@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using RestApiDemo_WebApi.Models;
 
-namespace RestApiDemo_WebApi.Repositories
+namespace RestApiDemo_WebApi.Interfaces
 {
     public interface IItemRepository<T>
         where T : BaseItem

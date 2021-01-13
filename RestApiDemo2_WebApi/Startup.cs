@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestApiDemo_WebApi.Data;
+using RestApiDemo_WebApi.Interfaces;
 using RestApiDemo_WebApi.Repositories;
 using RestApiDemo_WebApi.Services;
 

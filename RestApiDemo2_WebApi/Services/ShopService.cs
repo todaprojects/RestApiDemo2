@@ -1,4 +1,5 @@
 using RestApiDemo_WebApi.Helpers;
+using RestApiDemo_WebApi.Interfaces;
 using RestApiDemo_WebApi.Models;
 
 namespace RestApiDemo_WebApi.Services
