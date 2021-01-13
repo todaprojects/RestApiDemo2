@@ -2,7 +2,7 @@ using FluentAssertions;
 using RestApiDemo_WebApi.Controllers;
 using Xunit;
 
-namespace RestApiDemo2_UnitTests
+namespace RestApiDemo2_UnitTests.ControllerTests
 {
     public class ItemControllerTest
     {

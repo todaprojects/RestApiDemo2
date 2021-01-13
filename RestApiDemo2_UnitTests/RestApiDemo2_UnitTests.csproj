@@ -18,4 +18,8 @@
       <ProjectReference Include="..\RestApiDemo2_WebApi\RestApiDemo2_WebApi.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="DiscountService.cs" />
+    </ItemGroup>
+
 </Project>

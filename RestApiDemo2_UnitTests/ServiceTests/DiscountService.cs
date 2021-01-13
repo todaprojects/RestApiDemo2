@@ -2,7 +2,7 @@ using FluentAssertions;
 using RestApiDemo_WebApi.Services;
 using Xunit;
 
-namespace RestApiDemo2_UnitTests
+namespace RestApiDemo2_UnitTests.ServiceTests
 {
     public class DiscountService
     {
