@@ -8,14 +8,14 @@ namespace RestApiDemo_WebApi.Services
     {
         public ShoppingCart Sell<T>(T requestedItem, int quantity) where T : BaseItem
         {
-            var discount = Discount.GetDiscount(quantity);
+            var discount = DiscountHelper.GetDiscount(quantity);
             
             return new ShoppingCart
             {
                 Item = requestedItem,
                 PurchaseQuantity = quantity,
                 PurchaseDiscount = discount,
-                PurchaseAmount = requestedItem.Price * Discount.ApplyDiscount(discount) * quantity
+                PurchaseAmount = requestedItem.Price * DiscountHelper.ApplyDiscount(discount) * quantity
             };
         }
     }

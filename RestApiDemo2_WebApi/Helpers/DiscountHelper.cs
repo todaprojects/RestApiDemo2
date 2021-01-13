@@ -1,6 +1,6 @@
 namespace RestApiDemo_WebApi.Helpers
 {
-    public class Discount
+    public class DiscountHelper
     {
         public static int GetDiscount(int quantity)
         {
