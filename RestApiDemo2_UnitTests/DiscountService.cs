@@ -6,27 +6,15 @@ namespace RestApiDemo2_UnitTests
 {
     public class DiscountService
     {
-        private readonly ShopService _discountService = new ShopService();
-        
-        [Fact]
-        public void TestDiscountService1()
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(6, 10)]
+        [InlineData(11, 20)]
+        public void TestDiscountService1(int quantity, int discount)
         {
-            var discount = _discountService.GetDiscount(1);
-            discount.Should().Be(0);
-        }
-        
-        [Fact]
-        public void TestDiscountService2()
-        {
-            var discount = _discountService.GetDiscount(6);
-            discount.Should().Be(10);
-        }
-        
-        [Fact]
-        public void TestDiscountService3()
-        {
-            var discount = _discountService.GetDiscount(11);
-            discount.Should().Be(20);
+            var discountService = new ShopService();
+            var discountValue = discountService.GetDiscount(quantity);
+            discountValue.Should().Be(discount);
         }
     }
 }
